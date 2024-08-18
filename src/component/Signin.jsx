@@ -1,8 +1,13 @@
 import { useEffect, useState } from "react";
 import Signinmain from "./SignInmain";
 import { auth } from "../Config";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 function Signin() {
+  const dispatch = useDispatch();
+  const authenticate = useSelector((state) => state.authenticationReducer);
+  const navigate = useNavigate();
   const [isSignin, setIsSignin] = useState("SIGN UP");
   const [isStatus, setIsStatus] = useState("SIGN IN");
 
@@ -17,7 +22,11 @@ function Signin() {
   }
   useEffect(() => {
     console.log(auth);
+    dispatch({ type: "update_User", auth });
   }, []);
+  function gotohomepage() {
+    navigate("/");
+  }
   return (
     <div
       className="flex w-full flex-col sm:flex-row lg:flex-row md:flex-row h-[90vh]"
@@ -33,18 +42,21 @@ function Signin() {
             src="https://bookstoborrow.com/static/media/logo1.d46f871c.png"
             alt=""
             className="w-[50%] mb-2"
+            onClick={gotohomepage}
           />
           <h1 className="text-4xl font-bold mb-4">Welcome Back!</h1>
           <p className="mb-6">
             To keep connected with us please login with your personal
             information
           </p>
-          <button
-            onClick={changeIsSignin}
-            className="px-6 py-2 text-[#e4842e] bg-white rounded-full font-semibold"
-          >
-            {isSignin}
-          </button>
+          {!authenticate && (
+            <button
+              onClick={changeIsSignin}
+              className="px-6 py-2 text-[#e4842e] bg-white rounded-full font-semibold"
+            >
+              {isSignin}
+            </button>
+          )}
         </div>
       </div>
 

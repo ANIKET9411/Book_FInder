@@ -16,7 +16,7 @@ function Side_navbar() {
     navigate("/Profile");
   }
   return (
-    <div className="flex flex-row lg:flex-col md:flex-col lg:block md:block bg-[#303132] h-[10vh] lg:h-[90vh] md:h-[90vh] text-white fixed z-20 bottom-0 lg:top-20 w-full lg:w-max md:w-max justify-evenly">
+    <div className="flex flex-row lg:flex-col md:flex-col lg:block md:block bg-[#303132] h-[10vh] lg:h-[90vh] md:h-[88vh] text-white fixed z-20 bottom-0 lg:top-20 w-full lg:w-max md:w-max justify-evenly">
       <div className="text-left hidden lg:block md:block">
         <button className="w-15 " onClick={changeshow}>
           <i className="fa-solid fa-bars"></i>

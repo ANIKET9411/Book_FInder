@@ -16,6 +16,7 @@ import {
   getDocs,
   // getFirestore,
 } from "firebase/firestore";
+import { HashLoader } from "react-spinners";
 
 const languages = {
   en: "English",
@@ -30,6 +31,7 @@ const languages = {
 function Storypage() {
   const bookmarks = useSelector((state) => state.BookmarkReducer);
   // console.log(bookmarks);
+  const authenticate = useSelector((state) => state.authenticationReducer);
   const dispatch = useDispatch();
   const { title } = useParams();
   const [story, setStory] = useState("");
@@ -101,7 +103,10 @@ function Storypage() {
     const existingBookmark = bookmarks.find((bkt) => bkt.title === title);
 
     // const db = getFirestore();
-    const userCollection = collection(db, `Bookmarkdata`);
+    const userCollection = collection(
+      db,
+      `Bookmarkdata/${authenticate.uid}/data`
+    );
     const querySnapshot = await getDocs(userCollection);
 
     // Loop through each document and delete it
@@ -204,7 +209,9 @@ function Storypage() {
         {story && <Htmlconvertor htmlContent={story} className="max-h-60" />}
         {!story && (
           <div className="w-[100%] flex items-center justify-center h-[100%]">
-            <div className="w-full h-full">LOADING...</div>
+            {/* <div className="w-full h-full"> */}
+            <HashLoader color="#e4842e" />
+            {/* </div> */}
           </div>
         )}
       </div>

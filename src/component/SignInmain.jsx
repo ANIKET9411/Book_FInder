@@ -37,6 +37,7 @@ function Signinmain({ status }) {
     console.log("user signout successfully");
     console.log(auth);
     dispatch({ type: "remove_User" });
+    dispatch({ type: "REMOVE_BOOKMARK" });
   }
 
   async function SIGNIN(e) {
@@ -65,25 +66,31 @@ function Signinmain({ status }) {
   }
   return (
     <div className="w-full max-w-md mb-10">
-      <h2 className="text-3xl font-semibold text-[#e4842e] mb-6">
-        Create Account
-      </h2>
+      {!state.uid && (
+        <h2 className="text-3xl font-semibold text-[#e4842e] mb-6">
+          Create Account
+        </h2>
+      )}
 
-      <div className="flex justify-center space-x-4 mb-6">
-        <a href="#" className="text-gray-500">
-          <i className="fab fa-facebook-f"></i>
-        </a>
-        <a href="#" className="text-gray-500">
-          <i className="fab fa-linkedin-in"></i>
-        </a>
-        <a href="#" className="text-gray-500">
-          <i className="fab fa-twitter"></i>
-        </a>
-      </div>
+      {!state.uid && (
+        <div className="flex justify-center space-x-4 mb-6">
+          <a href="#" className="text-gray-500">
+            <i className="fab fa-facebook-f"></i>
+          </a>
+          <a href="#" className="text-gray-500">
+            <i className="fab fa-linkedin-in"></i>
+          </a>
+          <a href="#" className="text-gray-500">
+            <i className="fab fa-twitter"></i>
+          </a>
+        </div>
+      )}
 
-      <p className="text-center text-gray-500 mb-6">
-        or use your email for registration
-      </p>
+      {!state.uid && (
+        <p className="text-center text-gray-500 mb-6">
+          or use your email for registration
+        </p>
+      )}
 
       {!state.uid && (
         <form action="">
@@ -137,7 +144,25 @@ function Signinmain({ status }) {
           </button>
         </form>
       )}
-      {state.uid && <button onClick={SIGNOUT}>Signout</button>}
+      {state.uid && (
+        <div className="px-8 py-10 border-black border-solid border-4 w-full mx-auto text-center rounded-bl-lg">
+          <img
+            src="https://th.bing.com/th/id/R.01a2fb974429f5b93ba993d67894f097?rik=2TH6dxjuaGvyhg&riu=http%3a%2f%2fcdn.onlinewebfonts.com%2fsvg%2fimg_119029.png&ehk=C4aZ0qzmdkDSdlGh0QuwthbcBTM5C6EeXjC7hwYUlPY%3d&risl=&pid=ImgRaw&r=0"
+            alt=""
+            className=" text-center w-full p-10"
+          />
+          <h1 className="text-[10px] lg:text-2xl md:text-xl sm:text-xl font-bold text-black">
+            {state.email}
+          </h1>
+          <button
+            onClick={SIGNOUT}
+            className=" mb-10 rounded-md mx-auto p-2 bg-[#e4842e] font-bold w-full mt-4"
+          >
+            Sign Out
+          </button>
+        </div>
+      )}
+      {/* {state.uid && <button onClick={SIGNOUT}>Signout</button>} */}
     </div>
   );
 }
