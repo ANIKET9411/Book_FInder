@@ -31,10 +31,10 @@ Welcome to **Book for Borrow** - A comprehensive platform where users can search
 
 1. **Clone the Repository**
    ```bash
-   git clone https://github.com/yourusername/book-for-borrow.git
+   git clone https://github.com/yourusername/book-for-borrow.git 
 2. **Navigate to the Project Directory**
    ```bash
-   cd book-for-borrow
+   cd Book_FInder
 
 3. **Install Dependencies**
    ```bash
@@ -51,3 +51,9 @@ Welcome to **Book for Borrow** - A comprehensive platform where users can search
 - **APIs**: Google Books API, Speech Synthesis API
 - **State Management**: Redux
 - **Storage**: Firebase Firestore
+
+## License
+  This project is licensed under the MIT License.
+
+## Contact
+  For any questions, suggestions, or feedback, feel free to contact us at  aniketjauhri2003@gmail.com.
